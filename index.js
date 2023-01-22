@@ -16,20 +16,20 @@ app.use(cors({ optionsSuccessStatus: 200 }));  // some legacy browsers choke on 
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
 
 // endpoint for current date
 
-app.get("/api/", (req, res) =>{
+app.get("/api/", (req, res) => {
   let date = new Date();
   res.json({ "unix": date.getTime(), "utc": date.toUTCString() });
 });
 
 // timestamp converter for given date
-app.get("/api/:date", function (req, res) {
+app.get("/api/:date", (req, res) => {
   let date = req.params.date
   // console.log(typeof req.params.date);
   if (/^\d+$/.test(date)) {
