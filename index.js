@@ -21,7 +21,14 @@ app.get("/", function (req, res) {
 });
 
 
-// timestamp converter
+// endpoint for current date
+
+app.get("/api/", (req, res) =>{
+  let date = new Date();
+  res.json({ "unix": date.getTime(), "utc": date.toUTCString() });
+});
+
+// timestamp converter for given date
 app.get("/api/:date", function (req, res) {
   let date = req.params.date
   // console.log(typeof req.params.date);
